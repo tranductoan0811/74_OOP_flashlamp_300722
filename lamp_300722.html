@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+  <script src="Battery_300722.js"></script>
+  <script src="FlashLamp.js"></script>
+  <p style="margin-left: 100px;font-weight: bold;color: blue;">Thực hành mô phỏng lớp đèn pin</p>
+  <fieldset style="width: 400px; ">
+  <p>Nhập mức năng lượng của pin còn <input type="number" id="input_batterry" style="text-align: center;"></p>
+  <p >Chọn tình trạng ON/OFF của đèn: 
+
+    <select id="status_select" style="width: 100px;">
+      <option></option>
+      <option value = 1>ON</option>
+      <option value = 0>OFF</option>
+
+    </select>
+ 
+  </p>
+
+  <button onclick="display();">Hiển thị</button><br>
+  
+  <br><span id="Battery_Info"></span><br>
+  <br><span id="lighting_status"></span><br>
+  <span id="on_off"></span><br>
+</fieldset>
+  
+
+</body>
+
+</html>
+
+<script>
+  
+  var input_batterry;
+  var mystatus;
+
+  function getValue() {
+    
+    input_batterry = parseInt(document.getElementById("input_batterry").value);
+    mystatus = parseInt(document.getElementById("status_select").value);
+  
+   
+  }
+
+  function display() {
+    
+    getValue();
+
+    var rabbit_bat = new Battery(input_batterry);
+   
+    var lam1 = new Lamp(mystatus, rabbit_bat); 
+
+  
+  document.getElementById("Battery_Info").innerHTML 
+  = "Mức pin của đèn đang là: " + lam1.setBatteryInfo() + " %";
+  
+  document.getElementById("lighting_status").innerHTML 
+  = "Đèn đang ở trạng thái: " + lam1.Light();
+
+  document.getElementById("on_off").innerHTML = lam1.checkbat();
+
+}
+
+
+
+</script>
